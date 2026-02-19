@@ -1,0 +1,21 @@
+# ── 빌드 결과물 ──
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# ── 민감 정보 (절대 커밋 금지) ──
+src/main/resources/application.properties
+src/main/resources/application-prod.properties
+
+# ── IDE ──
+.idea/
+*.iml
+.vscode/
+*.class
+
+# ── OS ──
+.DS_Store
+Thumbs.db
+
+# ── 로그 ──
+*.log
+logs/
