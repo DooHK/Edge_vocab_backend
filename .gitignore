@@ -1,6 +1,7 @@
 # ── 빌드 결과물 ──
-target/
-!.mvn/wrapper/maven-wrapper.jar
+build/
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
 
 # ── 민감 정보 (절대 커밋 금지) ──
 src/main/resources/application.properties
@@ -11,6 +12,7 @@ src/main/resources/application-prod.properties
 *.iml
 .vscode/
 *.class
+out/
 
 # ── OS ──
 .DS_Store
