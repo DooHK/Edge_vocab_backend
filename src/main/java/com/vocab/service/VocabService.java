@@ -1,8 +1,10 @@
 package com.vocab.service;
 
 import com.vocab.dto.VocabDto;
+import com.vocab.entity.Folder;
 import com.vocab.entity.User;
 import com.vocab.entity.Vocabulary;
+import com.vocab.repository.FolderRepository;
 import com.vocab.repository.VocabularyRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,9 +16,11 @@ import java.util.stream.Collectors;
 public class VocabService {
 
     private final VocabularyRepository vocabRepository;
+    private final FolderRepository folderRepository;
 
-    public VocabService(VocabularyRepository vocabRepository) {
+    public VocabService(VocabularyRepository vocabRepository, FolderRepository folderRepository) {
         this.vocabRepository = vocabRepository;
+        this.folderRepository = folderRepository;
     }
 
     public List<VocabDto> getAll(User user) {
@@ -28,6 +32,10 @@ public class VocabService {
 
     public VocabDto add(User user, VocabDto dto) {
         Vocabulary vocab = new Vocabulary(user, dto.getWord(), dto.getTranslation(), dto.getDate());
+        if (dto.getFolderId() != null) {
+            folderRepository.findByIdAndUser(dto.getFolderId(), user)
+                    .ifPresent(vocab::setFolder);
+        }
         return VocabDto.from(vocabRepository.save(vocab));
     }
 

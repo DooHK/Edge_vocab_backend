@@ -15,6 +15,9 @@ public class VocabDto {
 
     private String date;
 
+    private Long folderId;
+    private String folderName;
+
     public VocabDto() {}
 
     public static VocabDto from(Vocabulary v) {
@@ -23,6 +26,10 @@ public class VocabDto {
         dto.word = v.getWord();
         dto.translation = v.getTranslation();
         dto.date = v.getAddedDate();
+        if (v.getFolder() != null) {
+            dto.folderId = v.getFolder().getId();
+            dto.folderName = v.getFolder().getName();
+        }
         return dto;
     }
 
@@ -30,8 +37,11 @@ public class VocabDto {
     public String getWord() { return word; }
     public String getTranslation() { return translation; }
     public String getDate() { return date; }
+    public Long getFolderId() { return folderId; }
+    public String getFolderName() { return folderName; }
 
     public void setWord(String word) { this.word = word; }
     public void setTranslation(String translation) { this.translation = translation; }
     public void setDate(String date) { this.date = date; }
+    public void setFolderId(Long folderId) { this.folderId = folderId; }
 }

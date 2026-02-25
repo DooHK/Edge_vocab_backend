@@ -15,6 +15,10 @@ public class Vocabulary {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "folder_id")
+    private Folder folder;
+
     @Column(nullable = false)
     private String word;
 
@@ -38,8 +42,11 @@ public class Vocabulary {
 
     public Long getId() { return id; }
     public User getUser() { return user; }
+    public Folder getFolder() { return folder; }
     public String getWord() { return word; }
     public String getTranslation() { return translation; }
     public String getAddedDate() { return addedDate; }
     public LocalDateTime getCreatedAt() { return createdAt; }
+
+    public void setFolder(Folder folder) { this.folder = folder; }
 }
