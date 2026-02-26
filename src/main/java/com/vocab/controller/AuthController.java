@@ -22,12 +22,12 @@ public class AuthController {
     }
 
     @PostMapping("/google")
-    public ResponseEntity<AuthResponse> googleLogin(@Valid @RequestBody GoogleAuthRequest request) {
+    public ResponseEntity<?> googleLogin(@Valid @RequestBody GoogleAuthRequest request) {
         try {
             AuthResponse response = authService.authenticateWithGoogle(request.getCredential());
             return ResponseEntity.ok(response);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage() != null ? e.getMessage() : "unknown"));
         }
     }
 
