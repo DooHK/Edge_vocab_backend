@@ -112,7 +112,8 @@ public class PaymentService {
         return Map.of(
             "plan", user.getPlan().name(),
             "isPremium", user.isPremium(),
-            "premiumExpiresAt", user.getPremiumExpiresAt() != null ? user.getPremiumExpiresAt().toString() : ""
+            "premiumExpiresAt", user.getPremiumExpiresAt() != null ? user.getPremiumExpiresAt().toString() : "",
+            "model", user.isPremium() ? "Google Translate (무제한)" : "Google Translate (기본)"
         );
     }
 }
