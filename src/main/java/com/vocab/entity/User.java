@@ -26,8 +26,8 @@ public class User {
     @Column(name = "plan", nullable = false)
     private Plan plan = Plan.FREE;
 
-    @Column(name = "auto_add")
-    private boolean autoAdd = false;
+    @Column(name = "auto_add", nullable = false)
+    private Boolean autoAdd = false;
 
     @Column(name = "premium_expires_at")
     private LocalDateTime premiumExpiresAt;
@@ -48,14 +48,14 @@ public class User {
     public String getEmail() { return email; }
     public String getName() { return name; }
     public Plan getPlan() { return plan; }
-    public boolean isAutoAdd() { return autoAdd; }
+    public Boolean isAutoAdd() { return autoAdd != null ? autoAdd : false; }
     public LocalDateTime getPremiumExpiresAt() { return premiumExpiresAt; }
     public LocalDateTime getCreatedAt() { return createdAt; }
 
     public void setName(String name) { this.name = name; }
     public void setEmail(String email) { this.email = email; }
     public void setPlan(Plan plan) { this.plan = plan; }
-    public void setAutoAdd(boolean autoAdd) { this.autoAdd = autoAdd; }
+    public void setAutoAdd(Boolean autoAdd) { this.autoAdd = autoAdd != null ? autoAdd : false; }
     public void setPremiumExpiresAt(LocalDateTime premiumExpiresAt) { this.premiumExpiresAt = premiumExpiresAt; }
 
     public boolean isPremium() {
